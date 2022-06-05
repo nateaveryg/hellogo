@@ -1,11 +1,11 @@
 steps:
   # Run tests and save to file
   - name: golang:1.18
-    entrypoint: /bin/bash
+    #entrypoint: /bin/bash
 
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage,'.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage','.']
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
