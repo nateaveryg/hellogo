@@ -5,15 +5,14 @@ steps:
 
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--tag', 
-           'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage', '-f', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage:latest','.']
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage:latest']
 
   # Deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'helloworld-${SHORT_SHA}', 
-           '--image=us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage', 
+           '--image=us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage:latest', 
            '--region', 'us-central1', '--platform', 'managed']
