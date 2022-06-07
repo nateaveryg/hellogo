@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import "github.com/gin-gonic/gin"
 
 func main() {
-	fmt.Println("Super Simple App")
+	r := gin.Default()
+
+	r.GET("/hello", func(c *gin.Context) {
+		c.String(200, "Hello, World!")
+	})
+
+	r.Run(":8080")
 }
