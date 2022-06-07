@@ -14,6 +14,8 @@ ADD . /app
 ## any further commands inside our /app
 ## directory
 WORKDIR /app
+##
+RUN go mod download
 ## we run go build to compile the binary
 ## executable of our Go program
 RUN go build .
